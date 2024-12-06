@@ -22,7 +22,7 @@ fn part1(input: &Input) -> i32 {
             let ascending = line[1] > line[0];
             line.windows(2).all(|w| {
                 let dist = if ascending { w[1] - w[0] } else { w[0] - w[1] };
-                dist >= 1 && dist <= 3
+                (1..=3).contains(&dist)
             })
         })
         .count() as i32
@@ -36,7 +36,7 @@ fn part2(input: &Input) -> i32 {
             let ascending = line[1] > line[0];
             line.windows(2).all(|w| {
                 let dist = if ascending { w[1] - w[0] } else { w[0] - w[1] };
-                dist >= 1 && dist <= 3
+                (1..=3).contains(&dist)
             })
         })
         .count() as i32

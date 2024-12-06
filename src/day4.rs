@@ -16,7 +16,7 @@ fn offset(x: usize, y: usize, dx: i32, dy: i32) -> Option<(usize, usize)> {
     }
 }
 
-fn check(puzzle: &Vec<Vec<char>>, needle: char, (x, y): (usize, usize)) -> bool {
+fn check(puzzle: &[Vec<char>], needle: char, (x, y): (usize, usize)) -> bool {
     // println!("checking {},{} for {}", x, y, needle);
     puzzle
         .get(y)
@@ -47,13 +47,13 @@ pub fn part1(input: &Vec<Vec<char>>) -> i32 {
             if input[y][x] == 'X' {
                 for d in dirs {
                     let m = offset(x, y, d.0, d.1)
-                        .map(|m| check(&input, 'M', m))
+                        .map(|m| check(input, 'M', m))
                         .unwrap_or_default();
                     let a = offset(x, y, d.0 * 2, d.1 * 2)
-                        .map(|a| check(&input, 'A', a))
+                        .map(|a| check(input, 'A', a))
                         .unwrap_or_default();
                     let s = offset(x, y, d.0 * 3, d.1 * 3)
-                        .map(|s| check(&input, 'S', s))
+                        .map(|s| check(input, 'S', s))
                         .unwrap_or_default();
 
                     if m && a && s {
@@ -80,11 +80,11 @@ pub fn part2(input: &Vec<Vec<char>>) -> i32 {
                 let rt = offset(x, y, 1, -1);
                 let rb = offset(x, y, 1, 1);
 
-                let top_sam = check_o(&input, 'S', lt) && check_o(&input, 'M', rb);
-                let top_mas = check_o(&input, 'M', lt) && check_o(&input, 'S', rb);
+                let top_sam = check_o(input, 'S', lt) && check_o(input, 'M', rb);
+                let top_mas = check_o(input, 'M', lt) && check_o(input, 'S', rb);
 
-                let bot_sam = check_o(&input, 'S', lb) && check_o(&input, 'M', rt);
-                let bot_mas = check_o(&input, 'M', lb) && check_o(&input, 'S', rt);
+                let bot_sam = check_o(input, 'S', lb) && check_o(input, 'M', rt);
+                let bot_mas = check_o(input, 'M', lb) && check_o(input, 'S', rt);
 
                 if (top_sam || top_mas) && (bot_sam || bot_mas) {
                     // println!("xmas at {},{}", x, y);

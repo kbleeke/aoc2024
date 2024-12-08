@@ -25,12 +25,12 @@ fn check(puzzle: &[Vec<char>], needle: char, (x, y): (usize, usize)) -> bool {
         .unwrap_or_default()
 }
 
-fn check_o(puzzle: &Vec<Vec<char>>, needle: char, d: Option<(usize, usize)>) -> bool {
+fn check_o(puzzle: &[Vec<char>], needle: char, d: Option<(usize, usize)>) -> bool {
     d.map(|d| check(puzzle, needle, d)).unwrap_or_default()
 }
 
 #[aoc(day4, part1)]
-pub fn part1(input: &Vec<Vec<char>>) -> i32 {
+pub fn part1(input: &[Vec<char>]) -> i32 {
     let dirs = [
         (0, 1),
         (1, 0),
@@ -69,7 +69,7 @@ pub fn part1(input: &Vec<Vec<char>>) -> i32 {
 }
 
 #[aoc(day4, part2)]
-pub fn part2(input: &Vec<Vec<char>>) -> i32 {
+pub fn part2(input: &[Vec<char>]) -> i32 {
     let mut x_mas = 0;
 
     for y in 0..input.len() {
